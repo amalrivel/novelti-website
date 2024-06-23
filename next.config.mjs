@@ -3,8 +3,9 @@ const nextConfig = {
   basePath: "/novelti-website",
   output: "export",
   images: {
-    loader: "custom",
-    loaderFile: "./src/lib/my-loader.ts",
+    domains: ["scontent.fcgk40-1.fna.fbcdn.net"], 
+//     loader: "custom",
+//     loaderFile: "./src/lib/my-loader.ts",
   },
 };
 
