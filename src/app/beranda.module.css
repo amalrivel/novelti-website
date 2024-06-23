@@ -1,0 +1,12 @@
+.hero:after {
+  background-color: hsl(var(--background));
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  bottom: -1px;
+  clip-path: polygon(100% 81%, 0 100%, 100% 100%);
+  content: "";
+  height: 380px;
+  position: absolute;
+  width: 100%;
+}
