@@ -7,22 +7,32 @@ export default function ScrollButton() {
   const [visible, setVisible] = React.useState(false);
 
   const toggleVisible = () => {
-    const scrolled = document.documentElement.scrollTop;
-    if (scrolled > 300) {
-      setVisible(true);
-    } else if (scrolled <= 300) {
-      setVisible(false);
+    if (typeof window !== 'undefined') { // Periksa apakah window tersedia
+      const scrolled = document.documentElement.scrollTop;
+      if (scrolled > 300) {
+        setVisible(true);
+      } else if (scrolled <= 300) {
+        setVisible(false);
+      }
     }
   };
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    if (typeof window !== 'undefined') { // Periksa apakah window tersedia
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
   };
 
-  window.addEventListener("scroll", toggleVisible);
+  React.useEffect(() => { // Gunakan useEffect untuk menjalankan kode di browser
+    window.addEventListener("scroll", toggleVisible);
+    return () => { // Bersihkan event listener saat komponen unmount
+      window.removeEventListener("scroll", toggleVisible);
+    };
+  }, []);
+
 
   return (
     <Button
