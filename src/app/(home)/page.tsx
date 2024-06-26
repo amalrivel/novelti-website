@@ -11,15 +11,31 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 import { Mail } from "lucide-react";
 import { Instagram } from "lucide-react";
+import { Eye } from "lucide-react";
+import { Calendar } from "lucide-react";
+import { ChevronDown } from "lucide-react";
+import { Map } from "lucide-react";
+import { Facebook } from "lucide-react";
+import { Linkedin } from "lucide-react";
 import styles from "@/app/home.module.css";
 
 export default function Home() {
   return (
-    <main>
+    <main className="flex flex-col gap-8">
       <section
-        className={cn("block relative bg-primary pb-32 pt-12", styles.hero)}
+        className={cn(
+          "block relative bg-primary pb-32 pt-12 mb-20",
+          styles.hero
+        )}
       >
         <div className="container px-4 mx-auto md:w-1/2 w-full h-full">
           <div className="text-primary-foreground text-center w-full h-full">
@@ -33,20 +49,22 @@ export default function Home() {
               sd sd as da sd as d asd as d asd as da da d as das d as d asd as d
               asd a sd asd as d as d asd as d asd as d as d asd as
             </p>
-            <div className="flex justify-center items-center gap-4 pb-8">
+            <div className="flex justify-between items-center gap-4 pb-8">
               <Button
                 variant="link"
-                className="text-primary-foreground"
+                className="text-primary-foreground hover:no-underline group transition-all transform-gpu"
                 asChild
               >
                 <Link href="mailto:bundonovelti@gmail.com">
                   <Mail className="mr-2 h-4 w-4" />
-                  bundonovelti@gmail.com
+                  <span className="bg-left-bottom bg-gradient-to-r from-primary-foreground to-primary-foreground bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all transform-gpu duration-500">
+                    bundonovelti@gmail.com
+                  </span>
                 </Link>
               </Button>
               <Button
                 variant="link"
-                className="text-primary-foreground"
+                className="text-primary-foreground hover:no-underline group transition-all transform-gpu"
                 asChild
               >
                 <Link
@@ -54,7 +72,9 @@ export default function Home() {
                   target="_blank"
                 >
                   <Instagram className="mr-2 h-4 w-4" />
-                  noveltimuis
+                  <span className="bg-left-bottom bg-gradient-to-r from-primary-foreground to-primary-foreground bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all transform-gpu duration-500">
+                    noveltimuis
+                  </span>
                 </Link>
               </Button>
             </div>
@@ -71,7 +91,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="container px-4 mx-auto md:w-3/4 w-full h-full mt-32">
+      <section className="container px-4 mx-auto md:w-3/4 w-full h-full">
         <div className="flex flex-col items-center text-center w-full h-full">
           <small className="muted">Tentang Saya</small>
           <h2 className="h2 mt-3 md:w-3/5">
@@ -90,56 +110,250 @@ export default function Home() {
             HTML file all the way to large Next.js applications. The web is
             incredible.
           </p>
-          <Button className="basis-full md:basis-0 mt-4 md:mt-8">
-            Pelajari lebih lanjut
+          <Button className="basis-full md:basis-0 mt-4 md:mt-8" asChild>
+            <Link href="/tentang">Pelajari lebih lanjut</Link>
           </Button>
         </div>
       </section>
 
-      <section className="container mx-auto px-4 flex flex-col-reverse items-center md:flex-row gap-4 mt-16 lg:mt-28">
-        <div className="h-full w-full">
-          <h2 className="h2">Bla Bla Bla Bla</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-            ullamcorper venenatis purus in sagittis. Sed pellentesque, nibh a
-            aliquam porttitor, nisl purus lobortis nibh, vel ornare diam diam ac
-            est. Aliquam erat volutpat. Sed vehicula mi ut nisl interdum, tempus
-            aliquet est faucibus. Donec sollicitudin scelerisque diam, a cursus
-            nisi elementum vel. Donec venenatis pharetra posuere. Mauris
-            lobortis ex et libero finibus, id egestas libero blandit. Nullam id
-            scelerisque orci.
-          </p>
+      <section>
+        <div className="text-center w-full">
+          <small className="muted">Blog</small>
         </div>
-        <Link href="/blog" className="relative h-full w-full">
-          <div className="w-full scale-100 hover:scale-[1.02] active:scale-[0.97] motion-safe:transform-gpu transition duration-100 motion-reduce:hover:scale-100 animate-shadow absolute max-w-[350px] transform-gpu top-1/2 translate-y-[-55%] md:translate-y-[-50%] lg:translate-y-[-60%] left-1/2 -translate-x-1/2 md:translate-x-[-50%] lg:translate-x-[-30%] rotate-3 md:rotate-6 lg:rotate-12 pointer-events-none md:pointer-events-auto">
-            <Card>
-              <CardHeader>
-                <CardTitle>Card Title</CardTitle>
-                <CardDescription>Card Description</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p>Card Content</p>
-              </CardContent>
-              <CardFooter>
-                <p>Card Footer</p>
-              </CardFooter>
-            </Card>
+        <div className="container mx-auto px-4 flex flex-col-reverse items-center md:flex-row gap-4 mt-8">
+          <div className="h-full w-full mt-4 md:mt-0">
+            <h2 className="h2 mb-8">Bla Bla Bla Bla</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+              ullamcorper venenatis purus in sagittis. Sed pellentesque, nibh a
+              aliquam porttitor, nisl purus lobortis nibh, vel ornare diam diam
+              ac est. Aliquam erat volutpat. Sed vehicula mi ut nisl interdum,
+              tempus aliquet est faucibus. Donec sollicitudin scelerisque diam,
+              a cursus nisi elementum vel. Donec venenatis pharetra posuere.
+              Mauris lobortis ex et libero finibus, id egestas libero blandit.
+              Nullam id scelerisque orci.
+            </p>
           </div>
-          <div className="w-full Zscale-100 hover:scale-[1.02] active:scale-[0.97] motion-safe:transform-gpu transition duration-100 motion-reduce:hover:scale-100 animate-shadow mx-auto max-w-[350px]">
-            <Card>
-              <CardHeader>
-                <CardTitle>Card Title</CardTitle>
-                <CardDescription>Card Description</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p>Card Content</p>
-              </CardContent>
-              <CardFooter>
-                <p>Card Footer</p>
-              </CardFooter>
-            </Card>
+          <div className="relative h-full w-full mt-5 md:mt-10">
+            <Link
+              href="/blog"
+              className="w-full hover:scale-[1.02] transition-all transform-gpu absolute max-w-80  rotate-6 translate-x-5 -translate-y-5 left-0 right-0 mx-auto"
+            >
+              <Card className="h-96 flex flex-col">
+                <div className="relative overflow-hidden">
+                  <Image
+                    src="https://scontent.fcgk40-1.fna.fbcdn.net/v/t39.30808-6/436857272_10210990699160226_6889316923652132304_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=6euPH4fpoX8Q7kNvgHUqJU5&_nc_ht=scontent.fcgk40-1.fna&oh=00_AYABV7BVh1-vrZSPFe5uo2c4LNpzRqLyCfluGkMCztY14w&oe=667D265D"
+                    width={200}
+                    height={200}
+                    alt="Picture of the author"
+                    className="h-32 w-full object-cover rounded-t-lg"
+                  />
+                  <div className="absolute bottom-0 right-0 m-2 flex gap-2 ">
+                    <Badge variant="secondary">Secondary</Badge>
+                    <Badge variant="secondary">Secondary</Badge>
+                    <Badge variant="secondary">Secondary</Badge>
+                    <Badge variant="secondary">Secondary</Badge>
+                  </div>
+                </div>
+                <CardHeader>
+                  <CardTitle className="line-clamp-2">
+                    Card Title asd asdasdadasd asd as d ad as dasd asd a d asd
+                    as da sd s
+                  </CardTitle>
+                  <CardDescription className="inline-flex justify-start items-center ">
+                    <Calendar className="mr-2 h-4 w-4" />
+                    March 03, 2024
+                    <Eye className="ml-4 mr-2 h-4 w-4" />
+                    232 pembaca
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="flex-1 overflow-hidden">
+                  <p className="line-clamp-4">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Aliquam ullamcorper venenatis purus in sagittis. Sed
+                    pellentesque, nibh a aliquam porttitor, nisl purus lobortis
+                    nibh, vel ornare diam diam ac est. Aliquam erat volutpat.
+                  </p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link
+              href="/blog"
+              className="block w-full hover:scale-[1.02] transition-all max-w-80 transform-gpu mx-auto"
+            >
+              <Card className="h-96 flex flex-col">
+                <div className="relative overflow-hidden">
+                  <Image
+                    src="https://scontent.fcgk40-1.fna.fbcdn.net/v/t39.30808-6/436857272_10210990699160226_6889316923652132304_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=6euPH4fpoX8Q7kNvgHUqJU5&_nc_ht=scontent.fcgk40-1.fna&oh=00_AYABV7BVh1-vrZSPFe5uo2c4LNpzRqLyCfluGkMCztY14w&oe=667D265D"
+                    width={200}
+                    height={200}
+                    alt="Picture of the author"
+                    className="h-32 w-full object-cover rounded-t-lg"
+                  />
+                  <div className="absolute bottom-0 right-0 m-2 flex gap-2 ">
+                    <Badge variant="secondary">Secondary</Badge>
+                    <Badge variant="secondary">Secondary</Badge>
+                    <Badge variant="secondary">Secondary</Badge>
+                    <Badge variant="secondary">Secondary</Badge>
+                  </div>
+                </div>
+                <CardHeader>
+                  <CardTitle className="line-clamp-2">
+                    Card Title asd asdasdadasd asd as d ad as dasd asd a d asd
+                    as da sd s
+                  </CardTitle>
+                  <CardDescription className="inline-flex justify-start items-center ">
+                    <Calendar className="mr-2 h-4 w-4" />
+                    March 03, 2024
+                    <Eye className="ml-4 mr-2 h-4 w-4" />
+                    232 pembaca
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="flex-1 overflow-hidden">
+                  <p className="line-clamp-4">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Aliquam ullamcorper venenatis purus in sagittis. Sed
+                    pellentesque, nibh a aliquam porttitor, nisl purus lobortis
+                    nibh, vel ornare diam diam ac est. Aliquam erat volutpat.
+                  </p>
+                </CardContent>
+              </Card>
+            </Link>
           </div>
-        </Link>
+        </div>
+        <div className="container mx-auto px-4 mt-8">
+          <h2 className="h2">Postingan Terbaru</h2>
+          <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+            {[0, 1, 2, 3, 4, 5].map((item) => (
+              <li key={item}>
+                <Link
+                  href="/"
+                  className="block hover:scale-[1.02] transition-all transform-gpu"
+                >
+                  <Card className="h-96 flex flex-col">
+                    <div className="relative overflow-hidden">
+                      <Image
+                        src="https://scontent.fcgk40-1.fna.fbcdn.net/v/t39.30808-6/436857272_10210990699160226_6889316923652132304_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=6euPH4fpoX8Q7kNvgHUqJU5&_nc_ht=scontent.fcgk40-1.fna&oh=00_AYABV7BVh1-vrZSPFe5uo2c4LNpzRqLyCfluGkMCztY14w&oe=667D265D"
+                        width={200}
+                        height={200}
+                        alt="Picture of the author"
+                        className="h-32 w-full object-cover rounded-t-lg"
+                      />
+                      <div className="absolute bottom-0 right-0 m-2 flex gap-2 ">
+                        <HoverCard openDelay={0}>
+                          <HoverCardTrigger asChild>
+                            <Badge variant="secondary">
+                              Tag
+                              <ChevronDown height={15} width={15} />
+                            </Badge>
+                          </HoverCardTrigger>
+                          <HoverCardContent>
+                            The React Framework – created and maintained by
+                            @vercel.
+                          </HoverCardContent>
+                        </HoverCard>
+                      </div>
+                    </div>
+                    <CardHeader>
+                      <CardTitle className="line-clamp-2">
+                        Card Title asd asdasdadasd asd as d ad as dasd asd a d
+                        asd as da sd s
+                      </CardTitle>
+                      <CardDescription className="inline-flex justify-start items-center ">
+                        <Calendar className="mr-2 h-4 w-4" />
+                        March 03, 2024
+                        <Eye className="ml-4 mr-2 h-4 w-4" />
+                        232 pembaca
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex-1 overflow-hidden">
+                      <p className="line-clamp-4">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Aliquam ullamcorper venenatis purus in sagittis. Sed
+                        pellentesque, nibh a aliquam porttitor, nisl purus
+                        lobortis nibh, vel ornare diam diam ac est. Aliquam erat
+                        volutpat.
+                      </p>
+                    </CardContent>
+                  </Card>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <Button className="mt-4" asChild>
+            <Link href="/blog">Lihat Semua Postingan</Link>
+          </Button>
+        </div>
+      </section>
+      <section className="container mx-auto px-4">
+        <div className="text-center w-full">
+          <small className="muted">Kontak</small>
+        </div>
+        <div className="inline-flex justify-around flex-wrap gap-6 mt-6">
+          <Link href="https://www.google.com/maps/place/Sumatera+Barat/" target="_blank">
+            <div className="inline-flex items-center group transition-all transform-gpu">
+              <div className="h-full flex">
+                <Map height="60" width="60" className="pr-2 group transition-all transform-gpu duration-500 group-hover:text-primary" />
+              </div>
+              <div className="inline-flex flex-col">
+                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary large -mb-1">Lokasi</p>
+                <Separator className="group transition-all transform-gpu duration-500 group-hover:bg-primary"/>
+                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary small mt-1">Sumatera Barat, Indonesia</p>
+              </div>
+            </div>
+          </Link>
+          <Link href="https://www.facebook.com/novelti.muis/" target="_blank">
+            <div className="inline-flex items-center group transition-all transform-gpu">
+              <div className="h-full flex">
+                <Facebook height="60" width="60" className="pr-2 group transition-all transform-gpu duration-500 group-hover:text-primary" />
+              </div>
+              <div className="inline-flex flex-col">
+                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary large -mb-1">Facebook</p>
+                <Separator className="group transition-all transform-gpu duration-500 group-hover:bg-primary"/>
+                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary small mt-1">Novelti Muis</p>
+              </div>
+            </div>
+          </Link>
+          <Link href="https://www.instagram.com/noveltimuis/" target="_blank">
+            <div className="inline-flex items-center group transition-all transform-gpu">
+              <div className="h-full flex">
+                <Instagram height="60" width="60" className="pr-2 group transition-all transform-gpu duration-500 group-hover:text-primary" />
+              </div>
+              <div className="inline-flex flex-col">
+                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary large -mb-1">Instagram</p>
+                <Separator className="group transition-all transform-gpu duration-500 group-hover:bg-primary"/>
+                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary small mt-1">noveltimuis</p>
+              </div>
+            </div>
+          </Link>
+          <Link href="mailto:bundonovelti@gmail.com">
+            <div className="inline-flex items-center group transition-all transform-gpu">
+              <div className="h-full flex">
+                <Mail height="60" width="60" className="pr-2 group transition-all transform-gpu duration-500 group-hover:text-primary" />
+              </div>
+              <div className="inline-flex flex-col">
+                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary large -mb-1">Mail</p>
+                <Separator className="group transition-all transform-gpu duration-500 group-hover:bg-primary"/>
+                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary small mt-1">bundonovelti@gmail.com</p>
+              </div>
+            </div>
+          </Link>
+          <Link
+            href="https://www.linkedin.com/in/bundo-novelti/"
+            target="_blank"
+          >
+            <div className="inline-flex items-center group transition-all transform-gpu">
+              <div className="h-full flex">
+                <Linkedin height="60" width="60" className="pr-2 group transition-all transform-gpu duration-500 group-hover:text-primary" />
+              </div>
+              <div className="inline-flex flex-col">
+                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary large -mb-1">LinkedIn</p>
+                <Separator className="group transition-all transform-gpu duration-500 group-hover:bg-primary"/>
+                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary small mt-1">Novelti Novelti</p>
+              </div>
+            </div>
+          </Link>
+        </div>
       </section>
     </main>
   );
