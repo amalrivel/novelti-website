@@ -48,7 +48,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <nav className="sticky top-0 z-50 bg-background">
-        <div className="container mx-auto px-4 py-2 flex justify-between items-center gap-4 ">
+        <div className="container mx-auto py-2 flex justify-between items-center gap-4 ">
           <ul className="hidden justify-start items-center sm:flex">
             <li>
               <Button
@@ -62,7 +62,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 )}
                 asChild
               >
-                <Link href="/">
+                <Link href="/" >
                   <span className="bg-left-bottom bg-gradient-to-r from-primary to-primary bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] group transition-all transform-gpu duration-500">
                     Beranda
                   </span>
@@ -297,7 +297,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </nav>
       {children}
       <ScrollButton/>
-      <footer className="container mx-auto px-4 py-4 inline-block mt-12">
+      <footer className="container mx-auto py-4 inline-block mt-12">
         <Separator />
         <ul className="flex justify-center gap-2 items-center flex-wrap pt-2">
           <li>

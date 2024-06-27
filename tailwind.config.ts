@@ -18,6 +18,15 @@ const config = {
     //     "2xl": "1400px",
     //   },
     // },
+    container: {
+      padding: {
+        DEFAULT: '1rem',
+        sm: '2.5rem',
+        lg: '4rem',
+        xl: '5.5rem',
+        '2xl': '7rem',
+      },
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",

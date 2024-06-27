@@ -27,17 +27,9 @@
       "hbenl.test-adapter-converter"
       "hbenl.vscode-test-explorer"
       "mikestead.dotenv"
-      "PKief.material-icon-theme"
-      "Prisma.prisma"
       "yzhang.markdown-all-in-one"
     ];
-    workspace = {
-      # Runs when a workspace is first created with this `dev.nix` file
-      onCreate = {
-        bun-install = "bun ci --no-audit --prefer-offline --no-progress --timing";
-      };
-      # To run something each time the workspace is (re)started, use the `onStart` hook
-    };
+   
     # Enable previews and customize configuration
     previews = {
       enable = true;

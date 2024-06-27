@@ -37,7 +37,7 @@ export default function Home() {
           styles.hero
         )}
       >
-        <div className="container px-4 mx-auto md:w-1/2 w-full h-full">
+        <div className="container mx-auto md:w-1/2 w-full h-full">
           <div className="text-primary-foreground text-center w-full h-full">
             <span>Halo semua, perkenalkan saya</span>
             <h1 className="h1 my-4">Novelti</h1>
@@ -91,7 +91,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="container px-4 mx-auto md:w-3/4 w-full h-full">
+      <section className="container  mx-auto md:w-3/4 w-full h-full">
         <div className="flex flex-col items-center text-center w-full h-full">
           <small className="muted">Tentang Saya</small>
           <h2 className="h2 mt-3 md:w-3/5">
@@ -120,7 +120,7 @@ export default function Home() {
         <div className="text-center w-full">
           <small className="muted">Blog</small>
         </div>
-        <div className="container mx-auto px-4 flex flex-col-reverse items-center md:flex-row gap-4 mt-8">
+        <div className="container mx-auto flex flex-col-reverse items-center md:flex-row gap-4 mt-8">
           <div className="h-full w-full mt-4 md:mt-0">
             <h2 className="h2 mb-8">Bla Bla Bla Bla</h2>
             <p>
@@ -148,11 +148,18 @@ export default function Home() {
                     alt="Picture of the author"
                     className="h-32 w-full object-cover rounded-t-lg"
                   />
-                  <div className="absolute bottom-0 right-0 m-2 flex gap-2 ">
-                    <Badge variant="secondary">Secondary</Badge>
-                    <Badge variant="secondary">Secondary</Badge>
-                    <Badge variant="secondary">Secondary</Badge>
-                    <Badge variant="secondary">Secondary</Badge>
+                  <div className="absolute bottom-0 right-0 m-2 flex gap-2">
+                    <HoverCard openDelay={0}>
+                      <HoverCardTrigger asChild>
+                        <Badge variant="secondary">
+                          Tag
+                          <ChevronDown height={15} width={15} />
+                        </Badge>
+                      </HoverCardTrigger>
+                      <HoverCardContent>
+                        The React Framework – created and maintained by @vercel.
+                      </HoverCardContent>
+                    </HoverCard>
                   </div>
                 </div>
                 <CardHeader>
@@ -190,11 +197,18 @@ export default function Home() {
                     alt="Picture of the author"
                     className="h-32 w-full object-cover rounded-t-lg"
                   />
-                  <div className="absolute bottom-0 right-0 m-2 flex gap-2 ">
-                    <Badge variant="secondary">Secondary</Badge>
-                    <Badge variant="secondary">Secondary</Badge>
-                    <Badge variant="secondary">Secondary</Badge>
-                    <Badge variant="secondary">Secondary</Badge>
+                  <div className="absolute bottom-0 right-0 m-2 flex gap-2">
+                    <HoverCard openDelay={0}>
+                      <HoverCardTrigger asChild>
+                        <Badge variant="secondary">
+                          Tag
+                          <ChevronDown height={15} width={15} />
+                        </Badge>
+                      </HoverCardTrigger>
+                      <HoverCardContent>
+                        The React Framework – created and maintained by @vercel.
+                      </HoverCardContent>
+                    </HoverCard>
                   </div>
                 </div>
                 <CardHeader>
@@ -221,7 +235,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
-        <div className="container mx-auto px-4 mt-8">
+        <div className="container mx-auto mt-8">
           <h2 className="h2">Postingan Terbaru</h2>
           <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
             {[0, 1, 2, 3, 4, 5].map((item) => (
@@ -239,7 +253,7 @@ export default function Home() {
                         alt="Picture of the author"
                         className="h-32 w-full object-cover rounded-t-lg"
                       />
-                      <div className="absolute bottom-0 right-0 m-2 flex gap-2 ">
+                      <div className="absolute bottom-0 right-0 m-2 flex gap-2">
                         <HoverCard openDelay={0}>
                           <HoverCardTrigger asChild>
                             <Badge variant="secondary">
@@ -285,56 +299,91 @@ export default function Home() {
           </Button>
         </div>
       </section>
-      <section className="container mx-auto px-4">
+      <section className="container mx-auto">
         <div className="text-center w-full">
           <small className="muted">Kontak</small>
         </div>
-        <div className="inline-flex justify-around flex-wrap gap-6 mt-6">
-          <Link href="https://www.google.com/maps/place/Sumatera+Barat/" target="_blank">
+        <div className="inline-flex justify-around flex-wrap gap-6 mt-6 w-full">
+          <Link
+            href="https://www.google.com/maps/place/Sumatera+Barat/"
+            target="_blank"
+          >
             <div className="inline-flex items-center group transition-all transform-gpu">
               <div className="h-full flex">
-                <Map height="60" width="60" className="pr-2 group transition-all transform-gpu duration-500 group-hover:text-primary" />
+                <Map
+                  height="60"
+                  width="60"
+                  className="pr-2 group transition-all transform-gpu duration-500 group-hover:text-primary"
+                />
               </div>
               <div className="inline-flex flex-col">
-                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary large -mb-1">Lokasi</p>
-                <Separator className="group transition-all transform-gpu duration-500 group-hover:bg-primary"/>
-                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary small mt-1">Sumatera Barat, Indonesia</p>
+                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary large -mb-1">
+                  Lokasi
+                </p>
+                <Separator className="group transition-all transform-gpu duration-500 group-hover:bg-primary" />
+                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary small mt-1">
+                  Sumatera Barat, Indonesia
+                </p>
               </div>
             </div>
           </Link>
           <Link href="https://www.facebook.com/novelti.muis/" target="_blank">
             <div className="inline-flex items-center group transition-all transform-gpu">
               <div className="h-full flex">
-                <Facebook height="60" width="60" className="pr-2 group transition-all transform-gpu duration-500 group-hover:text-primary" />
+                <Facebook
+                  height="60"
+                  width="60"
+                  className="pr-2 group transition-all transform-gpu duration-500 group-hover:text-primary"
+                />
               </div>
               <div className="inline-flex flex-col">
-                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary large -mb-1">Facebook</p>
-                <Separator className="group transition-all transform-gpu duration-500 group-hover:bg-primary"/>
-                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary small mt-1">Novelti Muis</p>
+                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary large -mb-1">
+                  Facebook
+                </p>
+                <Separator className="group transition-all transform-gpu duration-500 group-hover:bg-primary" />
+                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary small mt-1">
+                  Novelti Muis
+                </p>
               </div>
             </div>
           </Link>
           <Link href="https://www.instagram.com/noveltimuis/" target="_blank">
             <div className="inline-flex items-center group transition-all transform-gpu">
               <div className="h-full flex">
-                <Instagram height="60" width="60" className="pr-2 group transition-all transform-gpu duration-500 group-hover:text-primary" />
+                <Instagram
+                  height="60"
+                  width="60"
+                  className="pr-2 group transition-all transform-gpu duration-500 group-hover:text-primary"
+                />
               </div>
               <div className="inline-flex flex-col">
-                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary large -mb-1">Instagram</p>
-                <Separator className="group transition-all transform-gpu duration-500 group-hover:bg-primary"/>
-                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary small mt-1">noveltimuis</p>
+                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary large -mb-1">
+                  Instagram
+                </p>
+                <Separator className="group transition-all transform-gpu duration-500 group-hover:bg-primary" />
+                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary small mt-1">
+                  noveltimuis
+                </p>
               </div>
             </div>
           </Link>
           <Link href="mailto:bundonovelti@gmail.com">
             <div className="inline-flex items-center group transition-all transform-gpu">
               <div className="h-full flex">
-                <Mail height="60" width="60" className="pr-2 group transition-all transform-gpu duration-500 group-hover:text-primary" />
+                <Mail
+                  height="60"
+                  width="60"
+                  className="pr-2 group transition-all transform-gpu duration-500 group-hover:text-primary"
+                />
               </div>
               <div className="inline-flex flex-col">
-                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary large -mb-1">Mail</p>
-                <Separator className="group transition-all transform-gpu duration-500 group-hover:bg-primary"/>
-                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary small mt-1">bundonovelti@gmail.com</p>
+                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary large -mb-1">
+                  Mail
+                </p>
+                <Separator className="group transition-all transform-gpu duration-500 group-hover:bg-primary" />
+                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary small mt-1">
+                  bundonovelti@gmail.com
+                </p>
               </div>
             </div>
           </Link>
@@ -344,12 +393,20 @@ export default function Home() {
           >
             <div className="inline-flex items-center group transition-all transform-gpu">
               <div className="h-full flex">
-                <Linkedin height="60" width="60" className="pr-2 group transition-all transform-gpu duration-500 group-hover:text-primary" />
+                <Linkedin
+                  height="60"
+                  width="60"
+                  className="pr-2 group transition-all transform-gpu duration-500 group-hover:text-primary"
+                />
               </div>
               <div className="inline-flex flex-col">
-                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary large -mb-1">LinkedIn</p>
-                <Separator className="group transition-all transform-gpu duration-500 group-hover:bg-primary"/>
-                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary small mt-1">Novelti Novelti</p>
+                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary large -mb-1">
+                  LinkedIn
+                </p>
+                <Separator className="group transition-all transform-gpu duration-500 group-hover:bg-primary" />
+                <p className="group transition-all transform-gpu duration-500 group-hover:text-primary small mt-1">
+                  Novelti Novelti
+                </p>
               </div>
             </div>
           </Link>
