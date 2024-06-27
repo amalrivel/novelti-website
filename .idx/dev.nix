@@ -29,7 +29,6 @@
       "mikestead.dotenv"
       "yzhang.markdown-all-in-one"
     ];
-   
     # Enable previews and customize configuration
     previews = {
       enable = true;

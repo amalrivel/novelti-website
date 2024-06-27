@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Suspense } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
@@ -17,6 +18,7 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Separator } from "@/components/ui/separator";
 import { Mail } from "lucide-react";
 import { Instagram } from "lucide-react";
@@ -26,11 +28,12 @@ import { ChevronDown } from "lucide-react";
 import { Map } from "lucide-react";
 import { Facebook } from "lucide-react";
 import { Linkedin } from "lucide-react";
+import { LoaderPinwheel } from "lucide-react";
 import styles from "@/app/home.module.css";
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8">
       <section
         className={cn(
           "block relative bg-primary pb-32 pt-12 mb-20",
@@ -39,7 +42,7 @@ export default function Home() {
       >
         <div className="container mx-auto md:w-1/2 w-full h-full">
           <div className="text-primary-foreground text-center w-full h-full">
-            <span>Halo semua, perkenalkan saya</span>
+            <p>Halo semua, perkenalkan saya</p>
             <h1 className="h1 my-4">Novelti</h1>
             <p className="pb-2">
               Saya seorang Dosen di Universitas Muhammadiyah Sumatera Barat
@@ -82,7 +85,7 @@ export default function Home() {
         </div>
         <div className="absolute w-full text-center z-10">
           <Image
-            src="https://scontent.fcgk40-1.fna.fbcdn.net/v/t39.30808-6/436857272_10210990699160226_6889316923652132304_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=6euPH4fpoX8Q7kNvgHUqJU5&_nc_ht=scontent.fcgk40-1.fna&oh=00_AYABV7BVh1-vrZSPFe5uo2c4LNpzRqLyCfluGkMCztY14w&oe=667D265D"
+            src="https://scontent.fcgk40-1.fna.fbcdn.net/v/t39.30808-6/436857272_10210990699160226_6889316923652132304_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=31VVHNZH360Q7kNvgG5gPJi&_nc_ht=scontent.fcgk40-1.fna&oh=00_AYDUEU6hzJIhlOKZq0YSLX-8jwJDkiPrCGpt42zR8s-DgA&oe=6683859D"
             width={200}
             height={200}
             alt="Picture of the author"
@@ -110,7 +113,7 @@ export default function Home() {
             HTML file all the way to large Next.js applications. The web is
             incredible.
           </p>
-          <Button className="basis-full md:basis-0 mt-4 md:mt-8" asChild>
+          <Button className="basis-full md:basis-0 mt-4 md:mt-4" asChild>
             <Link href="/tentang">Pelajari lebih lanjut</Link>
           </Button>
         </div>
@@ -142,7 +145,7 @@ export default function Home() {
               <Card className="h-96 flex flex-col">
                 <div className="relative overflow-hidden">
                   <Image
-                    src="https://scontent.fcgk40-1.fna.fbcdn.net/v/t39.30808-6/436857272_10210990699160226_6889316923652132304_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=6euPH4fpoX8Q7kNvgHUqJU5&_nc_ht=scontent.fcgk40-1.fna&oh=00_AYABV7BVh1-vrZSPFe5uo2c4LNpzRqLyCfluGkMCztY14w&oe=667D265D"
+                    src="https://scontent.fcgk40-1.fna.fbcdn.net/v/t39.30808-6/436857272_10210990699160226_6889316923652132304_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=31VVHNZH360Q7kNvgG5gPJi&_nc_ht=scontent.fcgk40-1.fna&oh=00_AYDUEU6hzJIhlOKZq0YSLX-8jwJDkiPrCGpt42zR8s-DgA&oe=6683859D"
                     width={200}
                     height={200}
                     alt="Picture of the author"
@@ -191,7 +194,7 @@ export default function Home() {
               <Card className="h-96 flex flex-col">
                 <div className="relative overflow-hidden">
                   <Image
-                    src="https://scontent.fcgk40-1.fna.fbcdn.net/v/t39.30808-6/436857272_10210990699160226_6889316923652132304_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=6euPH4fpoX8Q7kNvgHUqJU5&_nc_ht=scontent.fcgk40-1.fna&oh=00_AYABV7BVh1-vrZSPFe5uo2c4LNpzRqLyCfluGkMCztY14w&oe=667D265D"
+                    src="https://scontent.fcgk40-1.fna.fbcdn.net/v/t39.30808-6/436857272_10210990699160226_6889316923652132304_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=31VVHNZH360Q7kNvgG5gPJi&_nc_ht=scontent.fcgk40-1.fna&oh=00_AYDUEU6hzJIhlOKZq0YSLX-8jwJDkiPrCGpt42zR8s-DgA&oe=6683859D"
                     width={200}
                     height={200}
                     alt="Picture of the author"
@@ -247,7 +250,7 @@ export default function Home() {
                   <Card className="h-96 flex flex-col">
                     <div className="relative overflow-hidden">
                       <Image
-                        src="https://scontent.fcgk40-1.fna.fbcdn.net/v/t39.30808-6/436857272_10210990699160226_6889316923652132304_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=6euPH4fpoX8Q7kNvgHUqJU5&_nc_ht=scontent.fcgk40-1.fna&oh=00_AYABV7BVh1-vrZSPFe5uo2c4LNpzRqLyCfluGkMCztY14w&oe=667D265D"
+                        src="https://scontent.fcgk40-1.fna.fbcdn.net/v/t39.30808-6/436857272_10210990699160226_6889316923652132304_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=31VVHNZH360Q7kNvgG5gPJi&_nc_ht=scontent.fcgk40-1.fna&oh=00_AYDUEU6hzJIhlOKZq0YSLX-8jwJDkiPrCGpt42zR8s-DgA&oe=6683859D"
                         width={200}
                         height={200}
                         alt="Picture of the author"
@@ -412,6 +415,6 @@ export default function Home() {
           </Link>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

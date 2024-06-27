@@ -297,7 +297,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </nav>
       {children}
       <ScrollButton/>
-      <footer className="container mx-auto py-4 inline-block mt-12">
+      <footer className="container mx-auto py-4 mt-12 w-full">
         <Separator />
         <ul className="flex justify-center gap-2 items-center flex-wrap pt-2">
           <li>
