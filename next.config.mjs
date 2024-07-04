@@ -3,9 +3,16 @@ const nextConfig = {
   // basePath: "/novelti-website",
   // output: "export",
   images: {
-    domains: ["scontent.fcgk40-1.fna.fbcdn.net"], 
-//     loader: "custom",
-//     loaderFile: "./src/lib/my-loader.ts",
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "scontent.fcgk40-1.fna.fbcdn.net",
+        port: "",
+      },
+    ],
+    //   domains: ["scontent.fcgk40-1.fna.fbcdn.net"],
+    //     loader: "custom",
+    //     loaderFile: "./src/lib/my-loader.ts",
   },
 };
 
