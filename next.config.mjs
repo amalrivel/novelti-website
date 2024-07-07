@@ -1,18 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // basePath: "/novelti-website",
-  // output: "export",
+  basePath: "/novelti-website",
+  output: "export",
   images: {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "scontent.fcgk40-1.fna.fbcdn.net",
+        hostname: "pbs.twimg.com",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "github.com",
         port: "",
       },
     ],
-    //   domains: ["scontent.fcgk40-1.fna.fbcdn.net"],
-    //     loader: "custom",
-    //     loaderFile: "./src/lib/my-loader.ts",
   },
 };
 

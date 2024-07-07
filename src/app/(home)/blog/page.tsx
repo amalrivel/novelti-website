@@ -4,10 +4,13 @@ import { lusitana } from "@/lib/fonts";
 
 export default function Blog() {
   return (
-    <main>
-      <section className="h-screen w-screen flex justify-center items-center">
-        <h1 className={cn("h1", lusitana.className)}>Halaman Blog</h1>
+    <div className="flex flex-col gap-8 mt-8">
+      <section className="container mx-auto">
+        <h1 className="h2">Blog</h1>
       </section>
-    </main>
+      <section>
+
+      </section>
+    </div>
   );
 }

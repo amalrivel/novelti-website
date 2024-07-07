@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Suspense } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
@@ -28,7 +27,6 @@ import { ChevronDown } from "lucide-react";
 import { Map } from "lucide-react";
 import { Facebook } from "lucide-react";
 import { Linkedin } from "lucide-react";
-import { LoaderPinwheel } from "lucide-react";
 import styles from "@/app/home.module.css";
 
 export default function Home() {
@@ -85,7 +83,7 @@ export default function Home() {
         </div>
         <div className="absolute w-full text-center z-10">
           <Image
-            src="https://scontent.fcgk40-1.fna.fbcdn.net/v/t39.30808-6/436857272_10210990699160226_6889316923652132304_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=31VVHNZH360Q7kNvgG5gPJi&_nc_ht=scontent.fcgk40-1.fna&oh=00_AYDUEU6hzJIhlOKZq0YSLX-8jwJDkiPrCGpt42zR8s-DgA&oe=6683859D"
+            src="https://pbs.twimg.com/profile_images/1593579150563979264/XmP70Qlq_400x400.jpg"
             width={200}
             height={200}
             alt="Picture of the author"
@@ -140,121 +138,16 @@ export default function Home() {
           <div className="relative h-full w-full mt-5 md:mt-10">
             <Link
               href="/blog"
-              className="w-full hover:scale-[1.02] transition-all transform-gpu absolute max-w-80  rotate-6 translate-x-5 -translate-y-5 left-0 right-0 mx-auto"
+              className="h-full w-full hover:scale-[1.02] transition-all transform-gpu absolute max-w-80  rotate-6 translate-x-5 -translate-y-5 left-0 right-0 mx-auto"
             >
-              <Card className="h-96 flex flex-col">
-                <div className="relative overflow-hidden">
-                  <Image
-                    src="https://scontent.fcgk40-1.fna.fbcdn.net/v/t39.30808-6/436857272_10210990699160226_6889316923652132304_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=31VVHNZH360Q7kNvgG5gPJi&_nc_ht=scontent.fcgk40-1.fna&oh=00_AYDUEU6hzJIhlOKZq0YSLX-8jwJDkiPrCGpt42zR8s-DgA&oe=6683859D"
-                    width={200}
-                    height={200}
-                    alt="Picture of the author"
-                    className="h-32 w-full object-cover rounded-t-lg"
-                  />
-                  <div className="absolute bottom-0 right-0 m-2 flex gap-2">
-                    <HoverCard openDelay={0}>
-                      <HoverCardTrigger asChild>
-                        <Badge variant="secondary">
-                          Tag
-                          <ChevronDown height={15} width={15} />
-                        </Badge>
-                      </HoverCardTrigger>
-                      <HoverCardContent>
-                        The React Framework – created and maintained by @vercel.
-                      </HoverCardContent>
-                    </HoverCard>
-                  </div>
-                </div>
-                <CardHeader>
-                  <CardTitle className="line-clamp-2">
-                    Card Title asd asdasdadasd asd as d ad as dasd asd a d asd
-                    as da sd s
-                  </CardTitle>
-                  <CardDescription className="inline-flex justify-start items-center ">
-                    <Calendar className="mr-2 h-4 w-4" />
-                    March 03, 2024
-                    <Eye className="ml-4 mr-2 h-4 w-4" />
-                    232 pembaca
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="flex-1 overflow-hidden">
-                  <p className="line-clamp-4">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Aliquam ullamcorper venenatis purus in sagittis. Sed
-                    pellentesque, nibh a aliquam porttitor, nisl purus lobortis
-                    nibh, vel ornare diam diam ac est. Aliquam erat volutpat.
-                  </p>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link
-              href="/blog"
-              className="block w-full hover:scale-[1.02] transition-all max-w-80 transform-gpu mx-auto"
-            >
-              <Card className="h-96 flex flex-col">
-                <div className="relative overflow-hidden">
-                  <Image
-                    src="https://scontent.fcgk40-1.fna.fbcdn.net/v/t39.30808-6/436857272_10210990699160226_6889316923652132304_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=31VVHNZH360Q7kNvgG5gPJi&_nc_ht=scontent.fcgk40-1.fna&oh=00_AYDUEU6hzJIhlOKZq0YSLX-8jwJDkiPrCGpt42zR8s-DgA&oe=6683859D"
-                    width={200}
-                    height={200}
-                    alt="Picture of the author"
-                    className="h-32 w-full object-cover rounded-t-lg"
-                  />
-                  <div className="absolute bottom-0 right-0 m-2 flex gap-2">
-                    <HoverCard openDelay={0}>
-                      <HoverCardTrigger asChild>
-                        <Badge variant="secondary">
-                          Tag
-                          <ChevronDown height={15} width={15} />
-                        </Badge>
-                      </HoverCardTrigger>
-                      <HoverCardContent>
-                        The React Framework – created and maintained by @vercel.
-                      </HoverCardContent>
-                    </HoverCard>
-                  </div>
-                </div>
-                <CardHeader>
-                  <CardTitle className="line-clamp-2">
-                    Card Title asd asdasdadasd asd as d ad as dasd asd a d asd
-                    as da sd s
-                  </CardTitle>
-                  <CardDescription className="inline-flex justify-start items-center ">
-                    <Calendar className="mr-2 h-4 w-4" />
-                    March 03, 2024
-                    <Eye className="ml-4 mr-2 h-4 w-4" />
-                    232 pembaca
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="flex-1 overflow-hidden">
-                  <p className="line-clamp-4">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Aliquam ullamcorper venenatis purus in sagittis. Sed
-                    pellentesque, nibh a aliquam porttitor, nisl purus lobortis
-                    nibh, vel ornare diam diam ac est. Aliquam erat volutpat.
-                  </p>
-                </CardContent>
-              </Card>
-            </Link>
-          </div>
-        </div>
-        <div className="container mx-auto mt-8">
-          <h2 className="h2">Postingan Terbaru</h2>
-          <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
-            {[0, 1, 2, 3, 4, 5].map((item) => (
-              <li key={item}>
-                <Link
-                  href="/"
-                  className="block hover:scale-[1.02] transition-all transform-gpu"
-                >
-                  <Card className="h-96 flex flex-col">
+              <Card className="h-full flex flex-col">
                     <div className="relative overflow-hidden">
                       <Image
-                        src="https://scontent.fcgk40-1.fna.fbcdn.net/v/t39.30808-6/436857272_10210990699160226_6889316923652132304_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=31VVHNZH360Q7kNvgG5gPJi&_nc_ht=scontent.fcgk40-1.fna&oh=00_AYDUEU6hzJIhlOKZq0YSLX-8jwJDkiPrCGpt42zR8s-DgA&oe=6683859D"
+                        src="https://pbs.twimg.com/profile_images/1593579150563979264/XmP70Qlq_400x400.jpg"
                         width={200}
                         height={200}
                         alt="Picture of the author"
-                        className="h-32 w-full object-cover rounded-t-lg"
+                        className="h-40 w-full object-cover rounded-t-lg"
                       />
                       <div className="absolute bottom-0 right-0 m-2 flex gap-2">
                         <HoverCard openDelay={0}>
@@ -272,7 +165,116 @@ export default function Home() {
                       </div>
                     </div>
                     <CardHeader>
-                      <CardTitle className="line-clamp-2">
+                      <CardTitle className="line-clamp-1">
+                        Card Title asd asdasdadasd asd as d ad as dasd asd a d
+                        asd as da sd s
+                      </CardTitle>
+                      <CardDescription className="inline-flex justify-start items-center ">
+                        <Calendar className="mr-2 h-4 w-4" />
+                        March 03, 2024
+                        <Eye className="ml-4 mr-2 h-4 w-4" />
+                        232 pembaca
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex-1 overflow-hidden">
+                      <p className="line-clamp-4">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Aliquam ullamcorper venenatis purus in sagittis. Sed
+                        pellentesque, nibh a aliquam porttitor, nisl purus
+                        lobortis nibh, vel ornare diam diam ac est. Aliquam erat
+                        volutpat.
+                      </p>
+                    </CardContent>
+                  </Card>
+            </Link>
+            <Link
+              href="/blog"
+              className="block w-full hover:scale-[1.02] transition-all max-w-80 transform-gpu mx-auto h-full"
+            >
+              <Card className="h-full flex flex-col">
+                    <div className="relative overflow-hidden">
+                      <Image
+                        src="https://pbs.twimg.com/profile_images/1593579150563979264/XmP70Qlq_400x400.jpg"
+                        width={200}
+                        height={200}
+                        alt="Picture of the author"
+                        className="h-40 w-full object-cover rounded-t-lg"
+                      />
+                      <div className="absolute bottom-0 right-0 m-2 flex gap-2">
+                        <HoverCard openDelay={0}>
+                          <HoverCardTrigger asChild>
+                            <Badge variant="secondary">
+                              Tag
+                              <ChevronDown height={15} width={15} />
+                            </Badge>
+                          </HoverCardTrigger>
+                          <HoverCardContent>
+                            The React Framework – created and maintained by
+                            @vercel.
+                          </HoverCardContent>
+                        </HoverCard>
+                      </div>
+                    </div>
+                    <CardHeader>
+                      <CardTitle className="line-clamp-1">
+                        Card Title asd asdasdadasd asd as d ad as dasd asd a d
+                        asd as da sd s
+                      </CardTitle>
+                      <CardDescription className="inline-flex justify-start items-center ">
+                        <Calendar className="mr-2 h-4 w-4" />
+                        March 03, 2024
+                        <Eye className="ml-4 mr-2 h-4 w-4" />
+                        232 pembaca
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex-1 overflow-hidden">
+                      <p className="line-clamp-4">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Aliquam ullamcorper venenatis purus in sagittis. Sed
+                        pellentesque, nibh a aliquam porttitor, nisl purus
+                        lobortis nibh, vel ornare diam diam ac est. Aliquam erat
+                        volutpat.
+                      </p>
+                    </CardContent>
+                  </Card>
+            </Link>
+          </div>
+        </div>
+        <div className="container mx-auto mt-8">
+          <h2 className="h2">Postingan Terbaru</h2>
+          <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+            {[0, 1, 2, 3, 4].map((item) => (
+              <li key={item}>
+                <Link
+                  href="/"
+                  className="block hover:scale-[1.02] transition-all transform-gpu h-full"
+                >
+                  <Card className="flex flex-col h-full">
+                    <div className="relative overflow-hidden">
+                      <Image
+                        src="https://pbs.twimg.com/profile_images/1593579150563979264/XmP70Qlq_400x400.jpg"
+                        width={200}
+                        height={200}
+                        alt="Picture of the author"
+                        className="h-40 w-full object-cover rounded-t-lg"
+                      />
+                      <div className="absolute bottom-0 right-0 m-2 flex gap-2">
+                        <HoverCard openDelay={0}>
+                          <HoverCardTrigger asChild>
+                            <Badge variant="secondary">
+                              Tag
+                              <ChevronDown height={15} width={15} />
+                            </Badge>
+                          </HoverCardTrigger>
+                          <HoverCardContent>
+                            The React Framework – created and maintained by
+                            @vercel.
+                          </HoverCardContent>
+                        </HoverCard>
+                      </div>
+                    </div>
+                    <CardHeader>
+                      <CardTitle className="line-clamp-1">
                         Card Title asd asdasdadasd asd as d ad as dasd asd a d
                         asd as da sd s
                       </CardTitle>
@@ -296,6 +298,59 @@ export default function Home() {
                 </Link>
               </li>
             ))}
+            <li>
+                <Link
+                  href="/"
+                  className="block hover:scale-[1.02] transition-all transform-gpu h-full"
+                >
+                  <Card className="flex flex-col h-full">
+                    <div className="relative overflow-hidden">
+                      <Image
+                        src="https://pbs.twimg.com/profile_images/1593579150563979264/XmP70Qlq_400x400.jpg"
+                        width={200}
+                        height={200}
+                        alt="Picture of the author"
+                        className="h-40 w-full object-cover rounded-t-lg"
+                      />
+                      <div className="absolute bottom-0 right-0 m-2 flex gap-2">
+                        <HoverCard openDelay={0}>
+                          <HoverCardTrigger asChild>
+                            <Badge variant="secondary">
+                              Tag
+                              <ChevronDown height={15} width={15} />
+                            </Badge>
+                          </HoverCardTrigger>
+                          <HoverCardContent>
+                            The React Framework – created and maintained by
+                            @vercel.
+                          </HoverCardContent>
+                        </HoverCard>
+                      </div>
+                    </div>
+                    <CardHeader>
+                      <CardTitle className="line-clamp-1">
+                        Card Title asd asdasdadasd asd as d ad as dasd asd a d
+                        asd as da sd s
+                      </CardTitle>
+                      <CardDescription className="inline-flex justify-start items-center ">
+                        <Calendar className="mr-2 h-4 w-4" />
+                        March 03, 2024
+                        <Eye className="ml-4 mr-2 h-4 w-4" />
+                        232 pembaca
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex-1 overflow-hidden">
+                      <p className="line-clamp-">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Aliquam ullamcorper venenatis purus in sagittis. Sed
+                        pellentesque, nibh a aliquam porttitor, nisl purus
+                        lobortis nibh, vel ornare diam diam ac est. Aliquam erat
+                        volutpat.
+                      </p>
+                    </CardContent>
+                  </Card>
+                </Link>
+              </li>
           </ul>
           <Button className="mt-4" asChild>
             <Link href="/blog">Lihat Semua Postingan</Link>
@@ -413,6 +468,11 @@ export default function Home() {
               </div>
             </div>
           </Link>
+        </div>
+        <div className="flex justify-center mt-8">
+          <Button asChild>
+            <Link href="/kontak">Hubungi Saya</Link>
+          </Button>
         </div>
       </section>
     </div>

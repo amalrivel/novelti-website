@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronUp } from "lucide-react";
-import clsx from "clsx";
+import { cn } from "@/lib/utils";
 
 export default function ScrollButton() {
   const [visible, setVisible] = React.useState(false);
@@ -38,7 +38,7 @@ export default function ScrollButton() {
     <Button
       variant="outline"
       size="icon"
-      className={clsx("fixed bottom-4 right-4 z-50", !visible && "hidden")}
+      className={cn("fixed bottom-4 right-4 z-50", !visible && "hidden")}
       onClick={scrollToTop}
     >
       <ChevronUp />
