@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
+import type { Metadata } from 'next';
 import { fontSans } from '@/lib/fonts';
-import { cn } from "@/lib/utils";
-import { ThemeProvider } from "@/components/theme-provider";
-import "./globals.css";
+import { cn } from '@/lib/utils';
+import { ThemeProvider } from '@/components/theme-provider';
+import './globals.css';
 
 export const metadata: Metadata = {
-  title: "Novelti",
-  description: "Website portofolio online Dr. Novelti, M. Hum.",
+  title: 'Novelti',
+  description: 'Website portofolio online Dr. Novelti, M. Hum.',
 };
 
 export default function RootLayout({
@@ -18,8 +18,8 @@ export default function RootLayout({
     <html lang="id">
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased ",
-          fontSans.variable
+          'min-h-screen bg-background font-sans antialiased',
+          fontSans.variable,
         )}
       >
         <ThemeProvider

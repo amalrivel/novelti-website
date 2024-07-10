@@ -1,18 +1,18 @@
-import * as React from "react";
-import { cn } from "@/lib/utils";
-import { lusitana } from "@/lib/fonts";
-import Link from "next/link";
-import Image from "next/image";
-import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
-import Timeline from "@mui/lab/Timeline";
-import TimelineItem from "@mui/lab/TimelineItem";
-import TimelineSeparator from "@mui/lab/TimelineSeparator";
-import TimelineConnector from "@mui/lab/TimelineConnector";
-import TimelineContent from "@mui/lab/TimelineContent";
-import TimelineDot from "@mui/lab/TimelineDot";
-import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import * as React from 'react';
+import { cn } from '@/lib/utils';
+import { lusitana } from '@/lib/fonts';
+import Link from 'next/link';
+import Image from 'next/image';
+import { Separator } from '@/components/ui/separator';
+import { Button } from '@/components/ui/button';
+import Timeline from '@mui/lab/Timeline';
+import TimelineItem from '@mui/lab/TimelineItem';
+import TimelineSeparator from '@mui/lab/TimelineSeparator';
+import TimelineConnector from '@mui/lab/TimelineConnector';
+import TimelineContent from '@mui/lab/TimelineContent';
+import TimelineDot from '@mui/lab/TimelineDot';
+import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
   Card,
   CardContent,
@@ -20,46 +20,46 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+} from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 const education = [
   {
-    name: "Sarjana",
-    value: "sarjana",
+    name: 'Sarjana',
+    value: 'sarjana',
     major:
-      "Pendidikan Bahasa dan Sastra Indonesia - Institut Keguruan dan Ilmu Pendidikan Padang",
+      'Pendidikan Bahasa dan Sastra Indonesia - Institut Keguruan dan Ilmu Pendidikan Padang',
   },
   {
-    name: "Magister",
-    value: "magister",
-    major: "Humaniora - Universitas Gadjah Mada",
+    name: 'Magister',
+    value: 'magister',
+    major: 'Humaniora - Universitas Gadjah Mada',
   },
   {
-    name: "Doktor",
-    value: "doktor",
-    major: "Kependidikan - Universitas Negeri Padang",
+    name: 'Doktor',
+    value: 'doktor',
+    major: 'Kependidikan - Universitas Negeri Padang',
   },
 ];
 
 export default function Tentang() {
   return (
-    <div className="flex flex-col gap-8 mt-8">
-      <section className="container mx-auto grid md:grid-cols-2 gap-8">
-        <div className="flex w-full h-full justify-center items-center">
+    <div className="mt-8 flex flex-col gap-8">
+      <section className="container mx-auto grid gap-8 md:grid-cols-2">
+        <div className="flex h-full w-full items-center justify-center">
           <div className="relative h-64 w-64">
-            <div className="absolute right-0 top-0 z-0 rounded-full w-24 h-24 bg-foreground/10 mr-4" />
-            <Separator className="w-16 bg-foreground absolute right-0 top-0 z-10 mt-6 -mr-2" />
+            <div className="absolute right-0 top-0 z-0 mr-4 h-24 w-24 rounded-full bg-foreground/10" />
+            <Separator className="absolute right-0 top-0 z-10 -mr-2 mt-6 w-16 bg-foreground" />
             <Image
               src="https://pbs.twimg.com/profile_images/1593579150563979264/XmP70Qlq_400x400.jpg"
               width={500}
               height={500}
               alt="Picture of the author"
-              className="rounded-full object-cover relative mt-6 z-20"
+              className="relative z-20 mt-6 rounded-full object-cover"
             />
           </div>
         </div>
-        <div className="flex flex-col mt-8">
+        <div className="mt-8 flex flex-col">
           <small className="small mb-8">Dr. Novelti, M. Hum.</small>
           <h1 className="h1 mb-4">Nama saya Novelti, Dosen Bahasa Indonesia</h1>
           <p className="mb-4">
@@ -77,10 +77,10 @@ export default function Tentang() {
         </div>
       </section>
       <section className="container mx-auto">
-        <div className="text-center w-full mb-2">
+        <div className="mb-2 w-full text-center">
           <small className="muted">Pendidikan</small>
         </div>
-        <div className="w-full flex justify-center my-8">
+        <div className="my-8 flex w-full justify-center">
           <Tabs defaultValue="sarjana" className="sm:w-3/5">
             <TabsList className="grid w-full grid-cols-3">
               {education.map((item) => (
@@ -93,13 +93,13 @@ export default function Tentang() {
               <TabsContent value={item.value} key={item.value}>
                 <Card>
                   <CardHeader>
-                    <Avatar className="flex w-full h-36 rounded-none justify-center">
+                    <Avatar className="flex h-36 w-full justify-center rounded-none">
                       <Image
                         src="https://pbs.twimg.com/profile_images/1593579150563979264/XmP70Qlq_400x400.jpg"
                         width={144}
                         height={144}
                         alt="Picture of the author"
-                        className="rounded-full object-cover h-36 w-36"
+                        className="h-36 w-36 rounded-full object-cover"
                       />
                     </Avatar>
                     <CardTitle>{item.name}</CardTitle>
@@ -113,7 +113,7 @@ export default function Tentang() {
         </div>
       </section>
       <section className="container mx-auto">
-        <div className="text-center w-full mb-2">
+        <div className="mb-2 w-full text-center">
           <small className="muted">Pengalaman Profesional</small>
         </div>
         <Timeline position="alternate-reverse" className="mt-8">
@@ -128,8 +128,8 @@ export default function Tentang() {
               <TimelineContent>
                 <Avatar
                   className={cn(
-                    "flex w-full h-10 rounded-none",
-                    index % 2 === 1 ? "justify-start" : "justify-end"
+                    'flex h-10 w-full rounded-none',
+                    index % 2 === 1 ? 'justify-start' : 'justify-end',
                   )}
                 >
                   <Image
@@ -137,7 +137,7 @@ export default function Tentang() {
                     width={40}
                     height={40}
                     alt="Picture of the author"
-                    className="rounded-full object-cover h-10 w-10"
+                    className="h-10 w-10 rounded-full object-cover"
                   />
                 </Avatar>
                 <small className="small">2023 - sekarang</small>

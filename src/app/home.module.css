@@ -5,7 +5,7 @@
   background-size: cover;
   bottom: -1px;
   clip-path: polygon(100% 81%, 0 100%, 100% 100%);
-  content: "";
+  content: '';
   height: 380px;
   position: absolute;
   width: 100%;

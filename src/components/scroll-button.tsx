@@ -1,13 +1,14 @@
-import * as React from "react";
-import { Button } from "@/components/ui/button";
-import { ChevronUp } from "lucide-react";
-import { cn } from "@/lib/utils";
+import * as React from 'react';
+import { Button } from '@/components/ui/button';
+import { ChevronUp } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export default function ScrollButton() {
   const [visible, setVisible] = React.useState(false);
 
   const toggleVisible = () => {
-    if (typeof window !== 'undefined') { // Periksa apakah window tersedia
+    if (typeof window !== 'undefined') {
+      // Periksa apakah window tersedia
       const scrolled = document.documentElement.scrollTop;
       if (scrolled > 300) {
         setVisible(true);
@@ -18,27 +19,29 @@ export default function ScrollButton() {
   };
 
   const scrollToTop = () => {
-    if (typeof window !== 'undefined') { // Periksa apakah window tersedia
+    if (typeof window !== 'undefined') {
+      // Periksa apakah window tersedia
       window.scrollTo({
         top: 0,
-        behavior: "smooth",
+        behavior: 'smooth',
       });
     }
   };
 
-  React.useEffect(() => { // Gunakan useEffect untuk menjalankan kode di browser
-    window.addEventListener("scroll", toggleVisible);
-    return () => { // Bersihkan event listener saat komponen unmount
-      window.removeEventListener("scroll", toggleVisible);
+  React.useEffect(() => {
+    // Gunakan useEffect untuk menjalankan kode di browser
+    window.addEventListener('scroll', toggleVisible);
+    return () => {
+      // Bersihkan event listener saat komponen unmount
+      window.removeEventListener('scroll', toggleVisible);
     };
   }, []);
-
 
   return (
     <Button
       variant="outline"
       size="icon"
-      className={cn("fixed bottom-4 right-4 z-50", !visible && "hidden")}
+      className={cn('fixed bottom-4 right-4 z-50', !visible && 'hidden')}
       onClick={scrollToTop}
     >
       <ChevronUp />
