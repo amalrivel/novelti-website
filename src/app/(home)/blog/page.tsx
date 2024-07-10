@@ -87,13 +87,6 @@ const tags = [
   { label: 'Korean', value: 'ko' },
   { label: 'Chinese', value: 'zh' },
 ];
-const post = Array.from({ length: 10 }, (_, i) => {
-  return {
-    title: `Judul ke berapa ya, judul ke ${i}`,
-    tag: [tags[i % 9].label, tags[(i + 5) % 9].label],
-  };
-});
-let filteredPosts: object[] = post;
 
 export default function Blog() {
   const searchParams = useSearchParams();
@@ -138,12 +131,6 @@ export default function Blog() {
     }
     replace(`${pathname}?${params.toString()}`);
 
-    filteredPosts = post.filter((item) =>
-      item.title
-        .toLowerCase()
-        .includes(searchParams?.get('judul')?.toString().toLowerCase() ?? ''),
-    );
-
     console.log(values);
   }
   // console.log(searchParams?.get('judul')?.toString());
@@ -157,8 +144,8 @@ export default function Blog() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           <div className="order-last md:order-none lg:col-span-2 ">
             <ul className="grid lg:grid-cols-2 gap-4">
-              {filteredPosts?.length > 0 ? (
-                filteredPosts.map((item, index) => (
+              {Array.from({ length: 10 }, (_, i) => i).length > 0 ? (
+                Array.from({ length: 10 }, (_, i) => i).map((item, index) => (
                   <li key={index}>
                     <Link
                       href="/"
@@ -174,13 +161,22 @@ export default function Blog() {
                             className="h-40 w-full object-cover rounded-t-lg"
                           />
                           <div className="absolute bottom-0 right-0 m-2 flex flex-wrap justify-end gap-2">
-                            {item.tag.map((item) => (
-                              <Badge variant="secondary">{item}</Badge>
-                            ))}
+                            {tags
+                              .filter(
+                                (item, i) =>
+                                  i % 9 == index || (i + 5) % 9 == index,
+                              )
+                              .map((item, index) => (
+                                <Badge variant="secondary" key={index}>
+                                  {item.label}
+                                </Badge>
+                              )) ?? null}
                           </div>
                         </div>
                         <CardHeader>
-                          <CardTitle>{item.title}</CardTitle>
+                          <CardTitle>
+                            {'Judul ke berapa ya, judul ke' + index}
+                          </CardTitle>
                           <CardDescription className="inline-flex justify-start items-center ">
                             <Calendar className="mr-2 h-4 w-4" />
                             March 03, 2024
@@ -309,7 +305,7 @@ export default function Blog() {
                                 <CommandGroup>
                                   {tags.map((language) => (
                                     <CommandItem
-                                      value={language.value}
+                                      value={language.label}
                                       key={language.value}
                                       onSelect={() => {
                                         if (!field.value) {
