@@ -238,15 +238,15 @@ export default function Blog() {
                             className="h-40 w-full object-cover rounded-t-lg"
                           />
                           <div className="absolute bottom-0 right-0 m-2 flex flex-wrap justify-end gap-2">
-                            {post.tag.map((tag) => (
+                            {/* {post.tag.map((tag) => (
                               <Badge variant="secondary" key={tag.key}>
                                 {tag.label}
                               </Badge>
-                            )) ?? null}
+                            )) ?? null} */}
                           </div>
                         </div>
                         <CardHeader>
-                          <CardTitle>{post.title}</CardTitle>
+                          {/* <CardTitle>{post.title}</CardTitle> */}
                           <CardDescription className="inline-flex justify-start items-center ">
                             <Calendar className="mr-2 h-4 w-4" />
                             March 03, 2024
@@ -279,7 +279,7 @@ export default function Blog() {
                       <PaginationPrevious onClick={() => handlePageChange(currentPage - 1)} />
                     </PaginationItem>
                   )}
-                  {getPaginationPages(currentPage, posts.total_pages).map(
+                  {/* {getPaginationPages(currentPage, posts.total_pages).map(
                     (page, index) => (
                       <PaginationItem key={index}>
                         {page === '...' ? (
@@ -294,7 +294,7 @@ export default function Blog() {
                         )}
                       </PaginationItem>
                     ),
-                  )}
+                  )} */}
                   {/* <PaginationItem>
                     <PaginationLink href="#">1</PaginationLink>
                   </PaginationItem>
@@ -309,11 +309,11 @@ export default function Blog() {
                   <PaginationItem>
                     <PaginationEllipsis />
                   </PaginationItem> */}
-                  {posts.total_pages != currentPage && (
+                  {/* {posts.total_pages != currentPage && (
                     <PaginationItem>
                       <PaginationNext onClick={() => handlePageChange(currentPage + 1)}/>
                     </PaginationItem>
-                  )}
+                  )} */}
                 </PaginationContent>
               </Pagination>
             </div>
