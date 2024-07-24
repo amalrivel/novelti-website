@@ -68,14 +68,6 @@ import {
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 
-const formSchema = z.object({
-  title: z.string({
-    message: 'Judul harus dalam bentuk string',
-  }),
-  // tag: z.string(),
-  tag: z.string().optional().array(),
-});
-
 const tags = [
   { label: 'English', value: 'en' },
   { label: 'French', value: 'fr' },
@@ -88,20 +80,106 @@ const tags = [
   { label: 'Chinese', value: 'zh' },
 ];
 
+function getPaginationPages(currentPage:number, totalPages:number, siblingCount = 1, boundaryCount = 1) {
+  const totalNumbers = siblingCount * 2 + 3; // Total visible page numbers (including currentPage)
+  const totalBlocks = totalNumbers + 2 * boundaryCount; // Including ellipsis and boundary pages
+
+  if (totalPages > totalBlocks) {
+    const startPage = Math.max(2, currentPage - siblingCount);
+    const endPage = Math.min(totalPages - 1, currentPage + siblingCount);
+
+    let pages = [];
+
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(i);
+    }
+
+    const hasLeftSpill = startPage > boundaryCount + 1;
+    const hasRightSpill = totalPages - endPage > boundaryCount;
+    const spillOffset = totalNumbers - (pages.length + boundaryCount * 2);
+
+    switch (true) {
+      case (hasLeftSpill && !hasRightSpill): {
+        const extraPages = Array.from({ length: spillOffset }, (_, i) => startPage - i - 1).reverse();
+        pages = ['...', ...extraPages, ...pages];
+        break;
+      }
+
+      case (!hasLeftSpill && hasRightSpill): {
+        const extraPages = Array.from({ length: spillOffset }, (_, i) => endPage + i + 1);
+        pages = [...pages, ...extraPages, '...'];
+        break;
+      }
+
+      case (hasLeftSpill && hasRightSpill):
+      default: {
+        pages = ['...', ...pages, '...'];
+        break;
+      }
+    }
+
+    return [
+      ...Array.from({ length: boundaryCount }, (_, i) => i + 1),
+      ...pages,
+      ...Array.from({ length: boundaryCount }, (_, i) => totalPages - boundaryCount + 1 + i)
+    ];
+  }
+
+  return Array.from({ length: totalPages }, (_, i) => i + 1);
+}
+
+async function getPosts(title = '', tag = '', page = '1', limit = '') {
+  const res = await fetch(
+    'http://localhost:8080/posts?' +
+      new URLSearchParams({
+        title: title,
+        tag: tag,
+        page: page,
+        limit: limit,
+      }).toString(),
+  );
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch posts');
+  }
+
+  return res.json();
+}
+
+const formSchema = z.object({
+  title: z.string({
+    message: 'Judul harus dalam bentuk string',
+  }),
+  tag: z.string().optional().array(),
+});
+
 export default function Blog() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  // function handleSearch(term: string) {
-  //   const params = new URLSearchParams(searchParams);
-  //   if (term) {
-  //     params.set('query', term);
-  //   } else {
-  //     params.delete('query');
-  //   }
-  //   replace(`${pathname}?${params.toString()}`);
-  // }
+  const params = new URLSearchParams(searchParams);
+  const [posts, setPosts] = React.useState({ data: [] });
+  React.useEffect(() => {
+    getPosts(
+      params.get('judul') ?? undefined,
+      params.get('tag') ?? undefined,
+      params.get('page') ?? undefined,
+      '3',
+    )
+      .then((posts) => {
+        setPosts(posts);
+      })
+      .catch((error) => {
+        console.error('Error fetching posts:', error);
+      });
+  }, [params.get('judul'), params.get('tag'), params.get('page')]);
+
+  const currentPage = Number(searchParams.get('page')) || 1;
+  const handlePageChange = (pageNumber: number | string) => {
+    params.set('page', pageNumber.toString());
+    replace(`${pathname}?${params.toString()}`);
+  };
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -113,11 +191,9 @@ export default function Blog() {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    const params = new URLSearchParams(searchParams);
-
     if (values.title) {
       params.set('judul', values.title);
     } else {
@@ -129,11 +205,12 @@ export default function Blog() {
     } else {
       params.delete('tag');
     }
-    replace(`${pathname}?${params.toString()}`);
 
-    console.log(values);
+    params.set('page', '1');
+
+    replace(`${pathname}?${params.toString()}`);
   }
-  // console.log(searchParams?.get('judul')?.toString());
+  // console.log(params.get('judul'));
 
   return (
     <div className="flex flex-col gap-8 mt-8">
@@ -144,9 +221,9 @@ export default function Blog() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           <div className="order-last md:order-none lg:col-span-2 ">
             <ul className="grid lg:grid-cols-2 gap-4">
-              {Array.from({ length: 10 }, (_, i) => i).length > 0 ? (
-                Array.from({ length: 10 }, (_, i) => i).map((item, index) => (
-                  <li key={index}>
+              {posts.data.length > 0 ? (
+                posts.data.map((post) => (
+                  <li>
                     <Link
                       href="/"
                       className="block hover:scale-[1.02] transition-all transform-gpu h-full"
@@ -161,22 +238,15 @@ export default function Blog() {
                             className="h-40 w-full object-cover rounded-t-lg"
                           />
                           <div className="absolute bottom-0 right-0 m-2 flex flex-wrap justify-end gap-2">
-                            {tags
-                              .filter(
-                                (item, i) =>
-                                  i % 9 == index || (i + 5) % 9 == index,
-                              )
-                              .map((item, index) => (
-                                <Badge variant="secondary" key={index}>
-                                  {item.label}
-                                </Badge>
-                              )) ?? null}
+                            {post.tag.map((tag) => (
+                              <Badge variant="secondary" key={tag.key}>
+                                {tag.label}
+                              </Badge>
+                            )) ?? null}
                           </div>
                         </div>
                         <CardHeader>
-                          <CardTitle>
-                            {'Judul ke berapa ya, judul ke' + index}
-                          </CardTitle>
+                          <CardTitle>{post.title}</CardTitle>
                           <CardDescription className="inline-flex justify-start items-center ">
                             <Calendar className="mr-2 h-4 w-4" />
                             March 03, 2024
@@ -203,11 +273,29 @@ export default function Blog() {
             </ul>
             <div className="flex mt-4">
               <Pagination>
-                <PaginationContent>
-                  <PaginationItem>
-                    <PaginationPrevious href="#" />
-                  </PaginationItem>
-                  <PaginationItem>
+                <PaginationContent className='flex-wrap'>
+                  {currentPage != 1 && (
+                    <PaginationItem>
+                      <PaginationPrevious onClick={() => handlePageChange(currentPage - 1)} />
+                    </PaginationItem>
+                  )}
+                  {getPaginationPages(currentPage, posts.total_pages).map(
+                    (page, index) => (
+                      <PaginationItem key={index}>
+                        {page === '...' ? (
+                          <PaginationEllipsis />
+                        ) : (
+                          <PaginationLink
+                            onClick={() => handlePageChange(page)}
+                            isActive={page === currentPage}
+                          >
+                            {page}
+                          </PaginationLink>
+                        )}
+                      </PaginationItem>
+                    ),
+                  )}
+                  {/* <PaginationItem>
                     <PaginationLink href="#">1</PaginationLink>
                   </PaginationItem>
                   <PaginationItem>
@@ -220,10 +308,12 @@ export default function Blog() {
                   </PaginationItem>
                   <PaginationItem>
                     <PaginationEllipsis />
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationNext href="#" />
-                  </PaginationItem>
+                  </PaginationItem> */}
+                  {posts.total_pages != currentPage && (
+                    <PaginationItem>
+                      <PaginationNext onClick={() => handlePageChange(currentPage + 1)}/>
+                    </PaginationItem>
+                  )}
                 </PaginationContent>
               </Pagination>
             </div>
@@ -244,12 +334,7 @@ export default function Blog() {
                       <FormItem>
                         <FormLabel>Judul</FormLabel>
                         <FormControl>
-                          <Input
-                            placeholder="Judul postingan"
-                            {...field}
-                            // value={undefined}
-                            // defaultValue={searchParams.get('judul')?.toString()}
-                          />
+                          <Input placeholder="Judul postingan" {...field} />
                         </FormControl>
                         <FormDescription>
                           Masukkan judul postingan yang ingin anda cari.

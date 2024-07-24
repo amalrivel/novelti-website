@@ -1,7 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: "/novelti-website",
-  output: "export",
   images: {
     remotePatterns: [
       {
@@ -13,6 +11,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'github.com',
         port: '',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '8080',
       },
     ],
   },

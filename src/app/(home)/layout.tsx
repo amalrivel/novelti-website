@@ -57,7 +57,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   asChild
                 >
                   <Link href={item.href}>
-                    <span className="group transform-gpu bg-gradient-to-r from-primary to-primary bg-[length:0%_2px] bg-left-bottom bg-no-repeat transition-all duration-500 group-hover:bg-[length:100%_2px]">
+                    <span className="group transform-gpu transition-all duration-500 bg-gradient-to-r from-primary to-primary bg-[length:0%_2px] bg-left-bottom bg-no-repeat group-hover:bg-[length:100%_2px]">
                       {item.name}
                     </span>
                   </Link>
