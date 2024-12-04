@@ -9,6 +9,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
+import { Toaster } from "@/components/ui/toaster";
 
 export default function Layout({
   children,
@@ -27,8 +28,10 @@ export default function Layout({
     <>
       <header className="sticky top-0 z-50 bg-accent">
         <div className="container py-4">
-          <nav className="flex items-center justify-between">
-            <span className="font-bold text-xl text-primary">NOVELTI MUIS</span>
+          <nav className="flex items-center gap-4 justify-between">
+            <span className="font-bold text-xl text-primary whitespace-nowrap">
+              NOVELTI MUIS
+            </span>
 
             <ul className="hidden md:flex items-center gap-2">
               {navLinks.map((link) => (
@@ -71,7 +74,8 @@ export default function Layout({
         </div>
       </header>
       <main className="flex-1 flex flex-col py-8">{children}</main>
-      <footer className="bg-card mt-auto">
+      <Toaster />
+      <footer className="mt-auto">
         <div className="container py-8">
           <div className="flex flex-col items-center gap-2">
             <p className="text-center text-sm text-muted-foreground">
