@@ -1,3 +1,8 @@
+"use client"
+
+import { useRouter } from "next/navigation";
+import { useToast } from "@/hooks/use-toast";
+import { useEffect } from "react";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -23,6 +28,22 @@ export default function Layout({
     { href: "/tentang", label: "Tentang" },
     { href: "/kontak", label: "Kontak" },
   ];
+
+  const router = useRouter();
+  const { toast } = useToast();
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const authError = searchParams.get("authError");
+    if (authError) {
+      toast({
+        variant: "destructive",
+        title: "Akses Ditolak",
+        description: decodeURIComponent(authError),
+      });
+      router.push("/");
+    }
+  }, [router, toast]);
 
   return (
     <>

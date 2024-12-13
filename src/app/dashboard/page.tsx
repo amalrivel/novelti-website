@@ -1,14 +1,11 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Activity, BookOpen, Eye, MessageSquare, Users } from "lucide-react";
-import { checkAdminAuth } from "@/utils/auth-client";
 
 export default async function Dashboard() {
-  const user = await checkAdminAuth();
-  
   return (
     <>
       <div className="container pt-4">
-        <h1 className="text-2xl font-bold">Selamat datang, {user.name}.</h1>
+        {/* <h1 className="text-2xl font-bold">Selamat datang, {user.name}.</h1> */}
       </div>
       <div className="container grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <Card>

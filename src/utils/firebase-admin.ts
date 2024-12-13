@@ -1,4 +1,4 @@
-import { auth } from "@/lib/firebase-admin";
+import { auth } from "@/libs/firebase-admin";
 
 interface UserStats {
   currentCount: number;

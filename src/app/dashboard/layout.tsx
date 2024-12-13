@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Toaster } from "@/components/ui/toaster";
 
 const sidebarItems = [
   {
@@ -64,7 +65,7 @@ const sidebarItems = [
     icon: "BarChart",
   },
   {
-    title: "Setingan",
+    title: "Pengaturan",
     url: "/dashboard/settings",
     icon: "Settings",
   },
@@ -136,6 +137,7 @@ export default function Layout({
           </Breadcrumb>
         </header>
         <main className="flex-1 flex flex-col gap-4">{children}</main>
+        <Toaster />
       </SidebarInset>
     </SidebarProvider>
   );

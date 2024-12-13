@@ -1,13 +1,18 @@
 "use client";
 
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "@/lib/firebase";
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  setPersistence,
+  browserLocalPersistence,
+  onAuthStateChanged,
+} from "firebase/auth";
+import { auth } from "@/libs/firebase";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { FaGoogle } from "react-icons/fa";
 import { useToast } from "@/hooks/use-toast";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 
 export default function Login() {
@@ -15,58 +20,47 @@ export default function Login() {
   const { toast } = useToast();
   const [loading, setLoading] = useState(true);
 
-  const ALLOWED_ADMIN_EMAILS: string[] = useMemo(
-    () =>
-      process.env.NEXT_PUBLIC_ADMIN_EMAILS?.split(",").map((email) =>
-        email.trim()
-      ) || [],
-    []
-  );
-
-  const searchParams = new URLSearchParams(window.location.search);
-  const authError = searchParams.get("authError");
-
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      try {
-        if (authError) {
-          toast({
-            variant: "destructive",
-            title: "Akses Ditolak",
-            description: decodeURIComponent(authError),
-          });
-          router.push("/");
-        }
-        else if (user) {
-          if (user.email && ALLOWED_ADMIN_EMAILS.includes(user.email)) {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        // Get fresh ID token
+        const idToken = await user.getIdToken(true);
+
+        // Send token to backend
+        const response = await fetch("/api/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ token: idToken }),
+        });
+
+        if (response.ok) {
+          // Check admin status
+          const verifyResponse = await fetch("/api/auth/verify");
+          const data = await verifyResponse.json();
+
+          if (data.isAdmin) {
             router.push("/dashboard");
           } else {
             toast({
               variant: "default",
               title: "Selamat Datang",
-              description: `Senang bertemu dengan Anda, ${user.displayName}! Terima kasih telah mengunjungi website ini.`,
+              description: `Senang bertemu dengan Anda, ${data.user.displayName}! Terima kasih telah mengunjungi website ini.`,
             });
             router.push("/");
           }
         }
-      } catch (error) {
-        console.error("Auth error:", error);
-        toast({
-          variant: "destructive",
-          title: "Error",
-          description: "Terjadi kesalahan saat login",
-        });
-      } finally {
-        setLoading(false);
       }
+      setLoading(false);
     });
 
     return () => unsubscribe();
-  }, [router, ALLOWED_ADMIN_EMAILS, toast, authError]);
+  }, [router, toast]);
 
   const signInWithGoogle = async () => {
     try {
       setLoading(true);
+
+      await setPersistence(auth, browserLocalPersistence);
 
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
@@ -79,19 +73,28 @@ export default function Login() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ token: idToken }),
+        signal: AbortSignal.timeout(10000),
       });
 
-      if (response.ok) {
-        router.refresh();
+      if (!response.ok) {
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description:
+            "Login gagal. Silakan coba lagi atau hubungi administrator.",
+        });
+
+        router.push("/");
       }
-    } catch (error) {
+
+      router.refresh();
+    } catch {
       toast({
         variant: "destructive",
         title: "Error",
-        description:
-          error instanceof Error ? error.message : "An error occurred",
+        description: "Terjadi kesalahan",
       });
-      
+
       router.push("/");
     } finally {
       setLoading(false);
